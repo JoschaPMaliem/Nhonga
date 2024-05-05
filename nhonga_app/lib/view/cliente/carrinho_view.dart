@@ -10,28 +10,15 @@ class Carrinho_view extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Dummy product data
-    List<Product> products = [
-      Product(
-        name: produtos.produtos[0].nome,
-        price: produtos.produtos[0].preco,
-        image: produtos.produtos[0].imagem,
-      ),
-      Product(
-        name: produtos.produtos[0].nome,
-        price: produtos.produtos[0].preco,
-        image: produtos.produtos[0].imagem,
-      ),
-      
-    ];
+   
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Cart"),
+        title: Text("Carrinho"),
       ),
       body: ListView.builder(
         shrinkWrap: true,
-        itemCount: products.length,
+        itemCount: produtos.produtos.length,
         itemBuilder: (context, index) {
           return Card(
             child: SizedBox(
@@ -43,6 +30,41 @@ class Carrinho_view extends StatelessWidget {
                         width: 100,
                         child: Image.network(produtos.produtos[index].imagem),
                       ),
+
+                      Padding(
+                            padding: const EdgeInsets.all(15.0),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  produtos.produtos[index].nome,
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    letterSpacing: 5,
+                                  ),
+                                ),
+                                Text(
+                                  '\$' +
+                                      " " +
+                                      produtos.produtos[index].preco,
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    letterSpacing: 5,
+                                    color: Colors.yellow.shade900,
+                                  ),
+                                ),
+                                OutlinedButton(
+                                  onPressed: null,
+                                  child: Text(
+                                    "S",
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
 
 
                 ],
@@ -59,15 +81,5 @@ class Carrinho_view extends StatelessWidget {
   }
 }
 
-class Product {
-  final String name;
-  final String price;
-  final String image;
 
-  Product({
-    required this.name,
-    required this.price,
-    required this.image,
-  });
-}
 
