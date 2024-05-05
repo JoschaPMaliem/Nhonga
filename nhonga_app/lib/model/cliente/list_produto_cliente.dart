@@ -21,38 +21,38 @@ class List_Produto_Cliente {
         localizacao: 'Maputo'),
 
     Produto(
-        nome: 'Iphone 15',
+        nome: 'HP Pavilion',
         vendedor: 'John Mateus',
         imagem:
-            'https://www.imagineonline.store/cdn/shop/files/iPhone_15_Pro_Max_Natural_Titanium_PDP_Image_Position-1__en-IN_817ead95-bff3-4129-866d-3f87976e8be2.jpg?v=1694759321',
+            'https://www.hp.com/gb-en/shop/Html/Merch/Images/c06723377_1750x1285.jpg',
         preco: '500.00',
         estado: 'Disponível',
         localizacao: 'Maputo'),
 
     Produto(
-        nome: 'Iphone 15',
+        nome: 'Bolsa gucci',
         vendedor: 'John Mateus',
         imagem:
-            'https://www.imagineonline.store/cdn/shop/files/iPhone_15_Pro_Max_Natural_Titanium_PDP_Image_Position-1__en-IN_817ead95-bff3-4129-866d-3f87976e8be2.jpg?v=1694759321',
+            'https://www.net-a-porter.com/variants/images/15546005222271485/in/w2000_a3-4_q60.jpg',
         preco: '500.00',
         estado: 'Disponível',
         localizacao: 'Maputo'),
 
     Produto(
-        nome: 'Iphone 15',
+        nome: 'Camisola ',
         vendedor: 'John Mateus',
         imagem:
-            'https://www.imagineonline.store/cdn/shop/files/iPhone_15_Pro_Max_Natural_Titanium_PDP_Image_Position-1__en-IN_817ead95-bff3-4129-866d-3f87976e8be2.jpg?v=1694759321',
+            'https://studios-tc.com/wp-content/uploads/2021/10/oversize-hoodie-black-back.jpg',
         preco: '500.00',
         estado: 'Disponível',
         localizacao: 'Maputo'),
 
     Produto(
-        nome: 'Iphone 15',
+        nome: 'Casa T3',
         vendedor: 'John Mateus',
         imagem:
-            'https://www.imagineonline.store/cdn/shop/files/iPhone_15_Pro_Max_Natural_Titanium_PDP_Image_Position-1__en-IN_817ead95-bff3-4129-866d-3f87976e8be2.jpg?v=1694759321',
-        preco: '500.00',
+            'https://i.pinimg.com/736x/6b/23/4c/6b234cee5f1a9c26d7e1f7901d77e6db.jpg',
+        preco: '500.000.00',
         estado: 'Disponível',
         localizacao: 'Maputo'),
 

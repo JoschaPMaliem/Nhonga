@@ -4,14 +4,12 @@ import 'package:nhonga_app/model/cliente/produto.dart';
 import 'package:nhonga_app/model/cliente/list_produto_cliente.dart';
 
 class Carrinho_view extends StatelessWidget {
-   Carrinho_view({super.key});
+  Carrinho_view({super.key});
 
   List_Produto_Cliente produtos = new List_Produto_Cliente();
 
   @override
   Widget build(BuildContext context) {
-   
-
     return Scaffold(
       appBar: AppBar(
         title: Text("Carrinho"),
@@ -26,60 +24,77 @@ class Carrinho_view extends StatelessWidget {
               child: Row(
                 children: [
                   SizedBox(
-                        height: 100,
-                        width: 100,
-                        child: Image.network(produtos.produtos[index].imagem),
-                      ),
-
-                      Padding(
-                            padding: const EdgeInsets.all(15.0),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  produtos.produtos[index].nome,
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                    letterSpacing: 5,
-                                  ),
-                                ),
-                                Text(
-                                  '\$' +
-                                      " " +
-                                      produtos.produtos[index].preco,
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                    letterSpacing: 5,
-                                    color: Colors.yellow.shade900,
-                                  ),
-                                ),
-                                OutlinedButton(
-                                  onPressed: null,
-                                  child: Text(
-                                    "S",
-                                  ),
-                                ),
-                              ],
-                            ),
+                    height: 100,
+                    width: 100,
+                    child: Image.network(produtos.produtos[index].imagem),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(15.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          produtos.produtos[index].nome,
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: 5,
                           ),
-
-
+                        ),
+                        Text(
+                          '\$' + " " + produtos.produtos[index].preco,
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: 5,
+                            color: Color.fromARGB(255, 71, 194, 167),
+                          ),
+                        ),
+                        OutlinedButton(
+                          onPressed: null,
+                          child: Text(
+                            "Remover",
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ],
-                
               ),
             ),
-            
-            
-            
           );
         },
+      ),
+      bottomSheet: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: InkWell(
+          onTap: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) {
+              return Carrinho_view();
+            }));
+          },
+          child: Container(
+            height: 50,
+            width: double.infinity,
+            decoration: BoxDecoration(
+              color: Color.fromARGB(255, 71, 194, 167),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Center(
+              child: Text(
+                'PAGAR',
+                style: TextStyle(
+                  color: Colors.white,
+                  letterSpacing: 8,
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }
 }
-
-
-
