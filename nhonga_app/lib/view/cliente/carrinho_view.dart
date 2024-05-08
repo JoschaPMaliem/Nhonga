@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:nhonga_app/model/cliente/produto.dart';
 import 'package:nhonga_app/model/cliente/list_produto_cliente.dart';
+import 'package:nhonga_app/view/cliente/pagamento_view.dart';
 
 class Carrinho_view extends StatelessWidget {
   Carrinho_view({super.key});
@@ -71,7 +72,7 @@ class Carrinho_view extends StatelessWidget {
         child: InkWell(
           onTap: () {
             Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return Carrinho_view();
+              return Pagamento_view();
             }));
           },
           child: Container(
