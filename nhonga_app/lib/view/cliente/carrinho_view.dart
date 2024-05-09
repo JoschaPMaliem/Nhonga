@@ -17,7 +17,7 @@ class Carrinho_view extends StatelessWidget {
       ),
       body: ListView.builder(
         shrinkWrap: true,
-        itemCount: produtos.produtos.length,
+        itemCount: produtos.produtosLista.length,
         itemBuilder: (context, index) {
           return Card(
             child: SizedBox(
@@ -27,7 +27,7 @@ class Carrinho_view extends StatelessWidget {
                   SizedBox(
                     height: 100,
                     width: 100,
-                    child: Image.network(produtos.produtos[index].imagem),
+                    child: Image.network(produtos.produtosLista[index].imagem),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(15.0),
@@ -36,7 +36,7 @@ class Carrinho_view extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          produtos.produtos[index].nome,
+                          produtos.produtosLista[index].nome,
                           style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
@@ -44,7 +44,7 @@ class Carrinho_view extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          '\$' + " " + produtos.produtos[index].preco,
+                          '\$' + " " + produtos.produtosLista[index].preco,
                           style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:nhonga_app/view/vendedor/adicionar_produto.dart';
 import 'package:nhonga_app/view/vendedor/editar_produto.dart';
-import 'package:nhonga_app/view/vendedor/gridview_Vendedor.dart';
+//import 'package:nhonga_app/view/vendedor/gridview_Vendedor.dart';
 import 'package:nhonga_app/view/vendedor/lista_produtos_vendedor.dart';
 import 'package:nhonga_app/view/vendedor/perfil_vendedor.dart';
 

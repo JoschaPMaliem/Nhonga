@@ -1,7 +1,7 @@
 import 'package:nhonga_app/model/cliente/produto.dart';
 
 class List_Produto_Cliente {
-  final List<Produto> produtos = [
+  final List<Produto> produtosLista = [
     Produto(
         nome: 'Iphone 15',
         vendedor: 'John Mateus',
