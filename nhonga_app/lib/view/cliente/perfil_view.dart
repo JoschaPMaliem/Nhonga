@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:nhonga_app/model/cliente/list_produto_cliente.dart';
+import 'package:nhonga_app/model/produto/list_produto.dart';
 
 
 class Perfil_view extends StatefulWidget {
    Perfil_view({super.key});
 
-    List_Produto_Cliente produtos = new List_Produto_Cliente();
+    List_Produto produtos = new List_Produto();
 
 
   @override

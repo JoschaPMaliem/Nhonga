@@ -4,22 +4,24 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nhonga_app/view/cliente/carrinho_view.dart';
 import 'package:nhonga_app/view/cliente/gridview_Cliente.dart';
 import 'package:nhonga_app/view/cliente/perfil_view.dart';
+import 'package:nhonga_app/model/carrinho/carrinho.dart'; // Import Carrinho class
 
 class Homepage_Cliente extends StatefulWidget {
-  const Homepage_Cliente({super.key});
+  const Homepage_Cliente({Key? key}) : super(key: key);
 
   @override
-  State<Homepage_Cliente> createState() => _Homepage_Cliente();
+  State<Homepage_Cliente> createState() => _Homepage_ClienteState();
 }
 
-class _Homepage_Cliente extends State<Homepage_Cliente> {
-  int _pageIndex = 0;
+class _Homepage_ClienteState extends State<Homepage_Cliente> {
+  late int _pageIndex = 0;
+  late Carrinho _carrinho;
 
-  List<Widget> _paginas = [
-    GridView_Cliente(),
-    Carrinho_view(),
-    Perfil_view(),
-  ];
+  @override
+  void initState() {
+    super.initState();
+    _carrinho = Carrinho();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -89,25 +91,42 @@ class _Homepage_Cliente extends State<Homepage_Cliente> {
               _pageIndex = value;
             });
           },
-
           unselectedItemColor: Colors.black,
           selectedItemColor: Color.fromARGB(255, 71, 194, 167),
           items: [
             BottomNavigationBarItem(
-                icon: Icon(CupertinoIcons.home), label: "Home"),
+              icon: Icon(CupertinoIcons.home),
+              label: "Home",
+            ),
             BottomNavigationBarItem(
-                icon: Icon(CupertinoIcons.cart), label: "Carrinho"),
+              icon: Icon(CupertinoIcons.cart),
+              label: "Carrinho",
+            ),
             BottomNavigationBarItem(
-                icon: SvgPicture.asset(
-                  "assets/icons/account.svg",
-                  width: 20,
-                ),
-                label: "Perfil"),
+              icon: SvgPicture.asset(
+                "assets/icons/account.svg",
+                width: 20,
+              ),
+              label: "Perfil",
+            ),
           ],
         ),
-        body: _paginas[_pageIndex],
+        body: _buildPage(),
       ),
       debugShowCheckedModeBanner: false,
     );
+  }
+
+  Widget _buildPage() {
+    switch (_pageIndex) {
+      case 0:
+        return GridView_Cliente();
+      case 1:
+        return CarrinhoView(carrinho: _carrinho);
+      case 2:
+        return Perfil_view();
+      default:
+        return Container();
+    }
   }
 }

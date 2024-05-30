@@ -1,98 +1,58 @@
-import 'package:flutter/cupertino.dart';
+// carrinho_view.dart
 import 'package:flutter/material.dart';
-import 'package:nhonga_app/model/cliente/produto.dart';
-import 'package:nhonga_app/model/cliente/list_produto_cliente.dart';
-import 'package:nhonga_app/view/cliente/pagamento_view.dart';
+import 'package:nhonga_app/model/carrinho/carrinho.dart';
+import 'package:nhonga_app/model/carrinho/carrinho_item.dart';
 
-class Carrinho_view extends StatelessWidget {
-  Carrinho_view({super.key});
+class CarrinhoView extends StatefulWidget {
+  final Carrinho carrinho; // Pass Carrinho instance to CarrinhoView
+  CarrinhoView({required this.carrinho}); // Constructor
 
-  List_Produto_Cliente produtos = new List_Produto_Cliente();
+  @override
+  _CarrinhoViewState createState() => _CarrinhoViewState();
+}
 
+class _CarrinhoViewState extends State<CarrinhoView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Carrinho"),
+        title: Text('Carrinho'),
       ),
       body: ListView.builder(
-        shrinkWrap: true,
-        itemCount: produtos.produtosLista.length,
+        itemCount: widget.carrinho.items.length,
         itemBuilder: (context, index) {
-          return Card(
-            child: SizedBox(
-              height: 170,
-              child: Row(
-                children: [
-                  SizedBox(
-                    height: 100,
-                    width: 100,
-                    child: Image.network(produtos.produtosLista[index].imagem),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(15.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          produtos.produtosLista[index].nome,
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            letterSpacing: 5,
-                          ),
-                        ),
-                        Text(
-                          '\$' + " " + produtos.produtosLista[index].preco,
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            letterSpacing: 5,
-                            color: Color.fromARGB(255, 71, 194, 167),
-                          ),
-                        ),
-                        OutlinedButton(
-                          onPressed: null,
-                          child: Text(
-                            "Remover",
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
+          final item = widget.carrinho.items[index];
+          return ListTile(
+            title: Text(item.produto.nome),
+            subtitle: Text('Preco: ${item.produto.preco}'),
+            trailing: IconButton(
+              icon: Icon(Icons.delete),
+              onPressed: () {
+                setState(() {
+                  widget.carrinho.remove(item); // Remove item from the cart
+                });
+              },
             ),
           );
         },
       ),
-      bottomSheet: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: InkWell(
-          onTap: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return Pagamento_view();
-            }));
-          },
-          child: Container(
-            height: 50,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              color: Color.fromARGB(255, 71, 194, 167),
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: Center(
-              child: Text(
-                'PAGAR',
-                style: TextStyle(
-                  color: Colors.white,
-                  letterSpacing: 8,
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
+      bottomNavigationBar: BottomAppBar(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'Total: \$${widget.carrinho.precoTotal.toStringAsFixed(2)}',
+                style: TextStyle(fontSize: 18.0),
               ),
-            ),
+              ElevatedButton(
+                onPressed: () {
+                  // Implement checkout logic here
+                },
+                child: Text('Checkout'),
+              ),
+            ],
           ),
         ),
       ),

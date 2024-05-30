@@ -1,8 +1,10 @@
-import 'package:nhonga_app/model/cliente/produto.dart';
+import 'package:nhonga_app/model/produto/produto.dart';
 
-class List_Produto_Cliente {
+class List_Produto {
   final List<Produto> produtosLista = [
     Produto(
+
+        id: '1',
         nome: 'Iphone 15',
         vendedor: 'John Mateus',
         imagem:
@@ -12,6 +14,7 @@ class List_Produto_Cliente {
         localizacao: 'Maputo'),
 
     Produto(
+      id: '1',
         nome: 'Airpods',
         vendedor: 'John Mateus',
         imagem:
@@ -21,6 +24,7 @@ class List_Produto_Cliente {
         localizacao: 'Maputo'),
 
     Produto(
+      id: '1',
         nome: 'HP Pavilion',
         vendedor: 'John Mateus',
         imagem:
@@ -30,6 +34,7 @@ class List_Produto_Cliente {
         localizacao: 'Maputo'),
 
     Produto(
+      id: '1',
         nome: 'Bolsa gucci',
         vendedor: 'John Mateus',
         imagem:
@@ -39,6 +44,7 @@ class List_Produto_Cliente {
         localizacao: 'Maputo'),
 
     Produto(
+      id: '1',
         nome: 'Camisola ',
         vendedor: 'John Mateus',
         imagem:
@@ -48,6 +54,7 @@ class List_Produto_Cliente {
         localizacao: 'Maputo'),
 
     Produto(
+      id: '1',
         nome: 'Casa T3',
         vendedor: 'John Mateus',
         imagem:

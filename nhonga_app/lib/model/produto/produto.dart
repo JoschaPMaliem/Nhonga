@@ -1,6 +1,7 @@
-import 'package:flutter/material.dart';
+import 'dart:ffi';
 
 class Produto {
+  String id;
   String nome;
   String vendedor;
   String imagem;
@@ -9,7 +10,9 @@ class Produto {
   String localizacao;
 
   Produto(
-      {required this.nome,
+      {
+      required this.id,
+      required this.nome,
       required this.vendedor,
       required this.imagem,
       required this.preco,

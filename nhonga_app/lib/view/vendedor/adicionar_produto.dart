@@ -2,12 +2,12 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:nhonga_app/model/cliente/list_produto_cliente.dart';
+import 'package:nhonga_app/model/produto/list_produto.dart';
 
 class Adicionar_Produto extends StatefulWidget {
   Adicionar_Produto({super.key});
 
-     final List_Produto_Cliente produtos = List_Produto_Cliente();
+     final List_Produto produtos = List_Produto();
 
   @override
   State<Adicionar_Produto> createState() => _Adicionar_ProdutoState();

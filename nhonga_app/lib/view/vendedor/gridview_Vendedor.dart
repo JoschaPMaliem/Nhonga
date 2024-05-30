@@ -3,12 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:nhonga_app/model/produto/list_produto.dart';
 import 'package:nhonga_app/view/cliente/produto_detail.dart';
 
-class Lista_Produtos extends StatelessWidget {
-  Lista_Produtos({super.key});
 
-    final List_Produto produtos = List_Produto();
+class Gridview_Vendedor extends StatelessWidget {
+  Gridview_Vendedor({super.key});
 
-
+   final List_Produto produtos = List_Produto();
 
   @override
  Widget build(BuildContext context) {
@@ -63,7 +62,14 @@ class Lista_Produtos extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                     
+                        Text(
+                          "${produtos.produtosLista[index].nome}",
+                          style: Theme.of(context).textTheme.bodySmall!.merge(
+                                const TextStyle(
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              ),
+                        ),
                         Row(
                           children: [
                             Icon(CupertinoIcons.person),
@@ -90,9 +96,13 @@ class Lista_Produtos extends StatelessWidget {
                                 ),
                               ),
                         ),
-                       
-                       
+                        const SizedBox(
+                          height: 8.0,
+                        ),
+                        
                       ],
+
+                      
                     ),
                   ),
                 ],

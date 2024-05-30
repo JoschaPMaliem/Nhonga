@@ -1,24 +1,35 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:nhonga_app/model/cliente/list_produto_cliente.dart';
-import 'package:nhonga_app/model/cliente/produto.dart';
-import 'package:nhonga_app/view/cliente/homepage_Cliente.dart';
-import 'package:cupertino_icons/cupertino_icons.dart';
+import 'package:nhonga_app/model/carrinho/carrinho_item.dart';
+import 'package:nhonga_app/model/produto/produto.dart';
+import 'package:nhonga_app/model/carrinho/carrinho.dart'; // Import Carrinho class
 
 class ProdutoDetailView extends StatefulWidget {
-  final Produto produtos;
+  final Produto produto; // Renamed from produtos to produto
 
-  ProdutoDetailView({required this.produtos});
+  ProdutoDetailView({required this.produto}); // Renamed from produtos to produto
 
   @override
   State<ProdutoDetailView> createState() => _ProdutoDetailViewState();
-  
 }
 
 class _ProdutoDetailViewState extends State<ProdutoDetailView> {
   bool addedToCart = false;
+
+  // Method to toggle cart state
+  void _toggleCartState() {
+    setState(() {
+      addedToCart = !addedToCart;
+      if (addedToCart) {
+        Carrinho().add(CarrinhoItem(produto: widget.produto));
+      } else {
+        Carrinho().remove(CarrinhoItem(produto: widget.produto));
+      }
+    });
+  }
+
   @override
-   Widget build(BuildContext context) {
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -27,7 +38,7 @@ class _ProdutoDetailViewState extends State<ProdutoDetailView> {
           color: Colors.black,
         ),
         title: Text(
-          widget.produtos.nome,
+          widget.produto.nome,
           style: TextStyle(
             color: Colors.black,
             fontSize: 18,
@@ -45,7 +56,7 @@ class _ProdutoDetailViewState extends State<ProdutoDetailView> {
                   height: 300,
                   width: MediaQuery.of(context).size.width,
                   child: Image.network(
-                    widget.produtos.imagem,
+                    widget.produto.imagem,
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -55,7 +66,7 @@ class _ProdutoDetailViewState extends State<ProdutoDetailView> {
             Padding(
               padding: const EdgeInsets.all(13.0),
               child: Text(
-                '\$' + ' ' + widget.produtos.preco,
+                '\$' + ' ' + widget.produto.preco,
                 style: TextStyle(
                   fontSize: 22,
                   letterSpacing: 8,
@@ -65,7 +76,7 @@ class _ProdutoDetailViewState extends State<ProdutoDetailView> {
               ),
             ),
             Text(
-              widget.produtos.nome,
+              widget.produto.nome,
               style: TextStyle(
                 fontSize: 22,
                 letterSpacing: 8,
@@ -99,7 +110,7 @@ class _ProdutoDetailViewState extends State<ProdutoDetailView> {
                       ),
                     ),
                     Text(
-                      widget.produtos.localizacao,
+                      widget.produto.localizacao,
                       style: TextStyle(
                         fontSize: 17,
                         color: Colors.grey,
@@ -120,7 +131,7 @@ class _ProdutoDetailViewState extends State<ProdutoDetailView> {
                       ),
                     ),
                     Text(
-                      widget.produtos.estado,
+                      widget.produto.estado,
                       style: TextStyle(
                         fontSize: 17,
                         color: Colors.grey,
@@ -141,7 +152,7 @@ class _ProdutoDetailViewState extends State<ProdutoDetailView> {
                       ),
                     ),
                     Text(
-                      widget.produtos.vendedor,
+                      widget.produto.vendedor,
                       style: TextStyle(
                         fontSize: 17,
                         color: Colors.grey,
@@ -162,18 +173,18 @@ class _ProdutoDetailViewState extends State<ProdutoDetailView> {
             padding: const EdgeInsets.all(10.0),
             child: Icon(
               CupertinoIcons.cart,
-              color: addedToCart ? Color.fromARGB(255, 228, 13, 13) : Color.fromARGB(255, 71, 194, 167),
+              color: addedToCart
+                  ? Color.fromARGB(255, 228, 13, 13)
+                  : Color.fromARGB(255, 71, 194, 167),
               size: 25,
             ),
           ),
           ElevatedButton(
-            onPressed: () {
-              setState(() {
-                addedToCart = !addedToCart;
-              });
-            },
+            onPressed: _toggleCartState, // Call the toggle method
             style: ElevatedButton.styleFrom(
-              backgroundColor: addedToCart? Color.fromARGB(255, 228, 13, 13) : Color.fromARGB(255, 71, 194, 167),
+              backgroundColor: addedToCart
+                  ? Color.fromARGB(255, 228, 13, 13)
+                  : Color.fromARGB(255, 71, 194, 167),
             ),
             child: Text(
               addedToCart ? 'REMOVER' : 'METER NO CARRINHO',

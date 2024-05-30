@@ -40,6 +40,7 @@ dependencies:
   shimmer_pro: ^0.0.6
   shimmer_animation: ^2.1.0+1
   cached_network_image: ^3.3.1
+  firebase_auth: ^4.20.0
 
 dev_dependencies:
   flutter_test:
@@ -61,7 +62,7 @@ flutter:
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
-  uses-material-design: true
+  uses-material-design: true 
 
   # To add assets to your application, add an assets section, like this:
   assets:
