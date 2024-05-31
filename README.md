@@ -7,7 +7,7 @@
 - [Como Começar](#como-começar)
 - [Estrutura do Projeto](./docs/project-structure.md)
 - [Guia de Estilo](./docs/styleguide.md)
-- [Orientações para Contribuir](nhonga_platform/docs/CONTRIBUTING.md)
+- [Orientações para Contribuir](nhonga_app/docs/CONTRIBUTING.md)
 - [Licença](#licença)
 
 
