@@ -5,18 +5,32 @@ import 'package:nhonga_app/model/produto/produto.dart';
 import 'package:nhonga_app/model/carrinho/carrinho.dart'; // Import Carrinho class
 
 class ProdutoDetailView extends StatefulWidget {
-  final Produto produto; // Renamed from produtos to produto
+  final Produto produto;
 
-  ProdutoDetailView({required this.produto}); // Renamed from produtos to produto
+  ProdutoDetailView({required this.produto});
 
   @override
   State<ProdutoDetailView> createState() => _ProdutoDetailViewState();
 }
 
 class _ProdutoDetailViewState extends State<ProdutoDetailView> {
+  int quantidade = 1;
   bool addedToCart = false;
 
-  // Method to toggle cart state
+  void _incrementQuantity() {
+    setState(() {
+      quantidade++;
+    });
+  }
+
+  void _decrementQuantity() {
+    if (quantidade > 1) {
+      setState(() {
+        quantidade--;
+      });
+    }
+  }
+
   void _toggleCartState() {
     setState(() {
       addedToCart = !addedToCart;
@@ -65,14 +79,41 @@ class _ProdutoDetailViewState extends State<ProdutoDetailView> {
             SizedBox(height: 20),
             Padding(
               padding: const EdgeInsets.all(13.0),
-              child: Text(
-                '\$' + ' ' + widget.produto.preco,
-                style: TextStyle(
-                  fontSize: 22,
-                  letterSpacing: 8,
-                  fontWeight: FontWeight.bold,
-                  color: Color.fromARGB(255, 71, 194, 167),
-                ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    child: Text(
+                      'Preco Total: \$${(double.parse(widget.produto.preco) * quantidade).toStringAsFixed(2)}',
+                      style: TextStyle(
+                        fontSize: 22,
+                        letterSpacing: 8,
+                        fontWeight: FontWeight.bold,
+                        color: Color.fromARGB(255, 71, 194, 167),
+                      ),
+                    ),
+                  ),
+                  Row(
+                    children: [
+                      IconButton(
+                        icon: Icon(Icons.remove),
+                        onPressed: _decrementQuantity,
+                      ),
+                      Text(
+                        quantidade.toString(),
+                        style: TextStyle(
+                          fontSize: 18,
+                          letterSpacing: 8,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      IconButton(
+                        icon: Icon(Icons.add),
+                        onPressed: _incrementQuantity,
+                      ),
+                    ],
+                  ),
+                ],
               ),
             ),
             Text(
@@ -180,7 +221,7 @@ class _ProdutoDetailViewState extends State<ProdutoDetailView> {
             ),
           ),
           ElevatedButton(
-            onPressed: _toggleCartState, // Call the toggle method
+            onPressed: _toggleCartState,
             style: ElevatedButton.styleFrom(
               backgroundColor: addedToCart
                   ? Color.fromARGB(255, 228, 13, 13)

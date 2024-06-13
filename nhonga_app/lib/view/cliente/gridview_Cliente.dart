@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nhonga_app/model/produto/list_produto.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:nhonga_app/view/cliente/produto_detail.dart';
-import 'package:cached_network_image/cached_network_image.dart';
+//import 'package:cached_network_image/cached_network_image.dart';
 
 class GridView_Cliente extends StatelessWidget {
   GridView_Cliente({super.key});
@@ -14,7 +14,7 @@ class GridView_Cliente extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
-          Padding(
+          /*Padding(
             padding: const EdgeInsets.all(10.0),
             child: Container(
               height: 140,
@@ -41,7 +41,7 @@ class GridView_Cliente extends StatelessWidget {
                 },
               ),
             ),
-          ),
+          ), */
           GridView.builder(
             physics: NeverScrollableScrollPhysics(),
             shrinkWrap: true,

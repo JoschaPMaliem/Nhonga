@@ -6,14 +6,14 @@ import 'package:nhonga_app/view/cliente/gridview_Cliente.dart';
 import 'package:nhonga_app/view/cliente/perfil_view.dart';
 import 'package:nhonga_app/model/carrinho/carrinho.dart'; // Import Carrinho class
 
-class Homepage_Cliente extends StatefulWidget {
-  const Homepage_Cliente({Key? key}) : super(key: key);
+class HomepageCliente extends StatefulWidget {
+  const HomepageCliente({super.key});
 
   @override
-  State<Homepage_Cliente> createState() => _Homepage_ClienteState();
+  State<HomepageCliente> createState() => _HomepageClienteState();
 }
 
-class _Homepage_ClienteState extends State<Homepage_Cliente> {
+class _HomepageClienteState extends State<HomepageCliente> {
   late int _pageIndex = 0;
   late Carrinho _carrinho;
 
@@ -77,7 +77,7 @@ class _Homepage_ClienteState extends State<Homepage_Cliente> {
               ListTile(
                 title: Text('Sign out'),
                 onTap: () {
-                  // Handle item 2 tap
+                  Navigator.pop(context);
                 },
               ),
             ],

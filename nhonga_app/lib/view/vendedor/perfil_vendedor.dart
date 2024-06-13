@@ -1,26 +1,43 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+import 'package:nhonga_app/model/database.dart'; // Import DBHelper class
 
 class Perfil_Vendedor extends StatefulWidget {
- Perfil_Vendedor({super.key});
+  Perfil_Vendedor({Key? key}) : super(key: key);
 
   @override
   State<Perfil_Vendedor> createState() => _Perfil_VendedorState();
 }
 
 class _Perfil_VendedorState extends State<Perfil_Vendedor> {
-
-  final TextEditingController fullNameController = TextEditingController();
-
-  final TextEditingController emailController = TextEditingController();
-
-  final TextEditingController phoneController = TextEditingController();
-
+  final DBHelper _dbHelper = DBHelper();
+  final TextEditingController _fullNameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _phoneController = TextEditingController();
   String? address;
 
   @override
- Widget build(BuildContext context) {
+  void initState() {
+    loadVendedorData();
+    super.initState();
+  }
+
+  void loadVendedorData() async {
+    // Replace with your logic to fetch current vendedor's data from DB
+    // For demo, setting default values
+    Map<String, dynamic>? vendedorData =
+        await _dbHelper.getVendedorByEmail('vendedor@exemplo.com');
+    if (vendedorData != null) {
+      setState(() {
+        _fullNameController.text = vendedorData['nome'];
+        _emailController.text = vendedorData['email'];
+        _phoneController.text = vendedorData['telefone'];
+      });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -30,8 +47,6 @@ class _Perfil_VendedorState extends State<Perfil_Vendedor> {
           'Editar Perfil',
           style: TextStyle(
             color: Colors.black,
-            //letterSpacing: 6,
-            //fontSize: 18,
           ),
         ),
       ),
@@ -62,7 +77,7 @@ class _Perfil_VendedorState extends State<Perfil_Vendedor> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
-                    controller: fullNameController,
+                    controller: _fullNameController,
                     decoration: InputDecoration(
                       labelText: 'Nome completo:',
                     ),
@@ -71,7 +86,7 @@ class _Perfil_VendedorState extends State<Perfil_Vendedor> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
-                    controller: emailController,
+                    controller: _emailController,
                     decoration: InputDecoration(
                       labelText: 'Email:',
                     ),
@@ -80,7 +95,7 @@ class _Perfil_VendedorState extends State<Perfil_Vendedor> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
-                    controller: phoneController,
+                    controller: _phoneController,
                     decoration: InputDecoration(
                       labelText: 'Numero de telefone:',
                     ),
@@ -106,7 +121,30 @@ class _Perfil_VendedorState extends State<Perfil_Vendedor> {
         padding: const EdgeInsets.all(13.0),
         child: InkWell(
           onTap: () async {
-            
+            // Prepare updated vendedor data
+            Map<String, dynamic> updatedData = {
+              'id': 'id_do_vendedor',
+              'nome': _fullNameController.text,
+              'email': _emailController.text,
+              'telefone': _phoneController.text,
+              'password': 'senha_do_vendedor',
+            };
+
+            // Update vendedor data in database
+            int rowsAffected = await _dbHelper.updateVendedor(updatedData);
+            if (rowsAffected > 0) {
+              // Show success message or navigate to another screen
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                content: Text('Perfil atualizado com sucesso!'),
+                duration: Duration(seconds: 2),
+              ));
+            } else {
+              // Show error message
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                content: Text('Falha ao atualizar perfil. Tente novamente.'),
+                duration: Duration(seconds: 2),
+              ));
+            }
           },
           child: Container(
             height: 40,
@@ -116,11 +154,12 @@ class _Perfil_VendedorState extends State<Perfil_Vendedor> {
               borderRadius: BorderRadius.circular(10),
             ),
             child: Center(
-                child: Text(
-              'UPDATE',
-              style: TextStyle(
-                  color: Colors.white, fontSize: 18, letterSpacing: 6),
-            )),
+              child: Text(
+                'UPDATE',
+                style: TextStyle(
+                    color: Colors.white, fontSize: 18, letterSpacing: 6),
+              ),
+            ),
           ),
         ),
       ),

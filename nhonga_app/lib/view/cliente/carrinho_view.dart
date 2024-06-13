@@ -1,11 +1,9 @@
-// carrinho_view.dart
 import 'package:flutter/material.dart';
 import 'package:nhonga_app/model/carrinho/carrinho.dart';
-import 'package:nhonga_app/model/carrinho/carrinho_item.dart';
 
 class CarrinhoView extends StatefulWidget {
-  final Carrinho carrinho; // Pass Carrinho instance to CarrinhoView
-  CarrinhoView({required this.carrinho}); // Constructor
+  final Carrinho carrinho; 
+  CarrinhoView({required this.carrinho}); 
 
   @override
   _CarrinhoViewState createState() => _CarrinhoViewState();
@@ -22,14 +20,23 @@ class _CarrinhoViewState extends State<CarrinhoView> {
         itemCount: widget.carrinho.items.length,
         itemBuilder: (context, index) {
           final item = widget.carrinho.items[index];
+          double totalPrice = double.parse(item.produto.preco) * item.quantidade;
+
           return ListTile(
             title: Text(item.produto.nome),
-            subtitle: Text('Preco: ${item.produto.preco}'),
+            subtitle: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('Preco unitario: \$${item.produto.preco}'),
+                Text('Quantidade: ${item.quantidade}'),
+                Text('Total: \$${totalPrice.toStringAsFixed(2)}'),
+              ],
+            ),
             trailing: IconButton(
               icon: Icon(Icons.delete),
               onPressed: () {
                 setState(() {
-                  widget.carrinho.remove(item); // Remove item from the cart
+                  widget.carrinho.remove(item); 
                 });
               },
             ),
@@ -48,7 +55,7 @@ class _CarrinhoViewState extends State<CarrinhoView> {
               ),
               ElevatedButton(
                 onPressed: () {
-                  // Implement checkout logic here
+                  // Implement your checkout logic here
                 },
                 child: Text('Checkout'),
               ),

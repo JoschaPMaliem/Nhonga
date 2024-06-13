@@ -11,22 +11,41 @@ class Carrinho {
 
   List<CarrinhoItem> items = [];
 
-  //List<CarrinhoItem> get items => items;
-
-  void add(CarrinhoItem item) {
-    items.add(item);
-  }
-
-  void remove(CarrinhoItem item) {
-    items.remove(item);
-  }
-
   double get precoTotal {
     double totalPrice = 0;
     for (var item in items) {
-      totalPrice += double.parse(item.produto.preco);
+      totalPrice += double.parse(item.produto.preco) * item.quantidade;
     }
     return totalPrice;
+  }
+
+  void add(CarrinhoItem item) {
+    // Check if the item is already in the cart
+    var existingItem = items.firstWhere(
+      (element) => element.produto.id == item.produto.id,
+      orElse: () => CarrinhoItem(produto: item.produto),
+    );
+
+    // If found, increase the quantity; otherwise, add new item
+    if (items.contains(existingItem)) {
+      existingItem.quantidade++;
+    } else {
+      items.add(item);
+    }
+  }
+
+  void remove(CarrinhoItem item) {
+    // Decrease quantity and remove if quantity becomes zero
+    var existingItem = items.firstWhere(
+      (element) => element.produto.id == item.produto.id,
+      orElse: () => CarrinhoItem(produto: item.produto),
+    );
+
+    if (existingItem.quantidade > 1) {
+      existingItem.quantidade--;
+    } else {
+      items.remove(item);
+    }
   }
 
   void clear() {

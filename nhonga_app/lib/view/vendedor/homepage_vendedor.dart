@@ -6,19 +6,19 @@ import 'package:nhonga_app/view/vendedor/lista_produtos_vendedor.dart';
 import 'package:nhonga_app/view/vendedor/perfil_vendedor.dart';
 
 
-class Homepage_Vendedor extends StatefulWidget {
-  const Homepage_Vendedor({super.key});
+class HomepageVendedor extends StatefulWidget {
+  const HomepageVendedor({super.key});
 
   @override
-  State<Homepage_Vendedor> createState() => _Homepage_VendedorState();
+  State<HomepageVendedor> createState() => _HomepageVendedorState();
 }
 
-class _Homepage_VendedorState extends State<Homepage_Vendedor> {
+class _HomepageVendedorState extends State<HomepageVendedor> {
   int _pageIndex = 0;
 
   List<Widget> _paginas = [
     Adicionar_Produto(),
-    Lista_Produtos(), //Editar_Produtos(),
+    Lista_Produtos(), 
     Perfil_Vendedor(),
   ];
 
@@ -76,7 +76,7 @@ class _Homepage_VendedorState extends State<Homepage_Vendedor> {
               ListTile(
                 title: Text('Sign out'),
                 onTap: () {
-                  // Handle item 2 tap
+                  
                 },
               ),
             ],
